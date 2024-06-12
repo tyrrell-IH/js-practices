@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const Last_Number = 30;
+const LAST_NUMBER = 30;
 
-for (let cnt = 1; cnt <= Last_Number; cnt++) {
+for (let cnt = 1; cnt <= LAST_NUMBER; cnt++) {
   if (cnt % 3 === 0 && cnt % 5 === 0) {
     console.log("FizzBuzz");
   } else if (cnt % 3 === 0) {
