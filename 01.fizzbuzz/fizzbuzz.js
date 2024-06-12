@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const LAST_NUMBER = 30;
+const LAST_NUMBER = 20;
 
 for (let cnt = 1; cnt <= LAST_NUMBER; cnt++) {
   if (cnt % 3 === 0 && cnt % 5 === 0) {
