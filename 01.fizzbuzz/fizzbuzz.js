@@ -9,5 +9,7 @@ for (let cnt = 1; cnt <= LAST_NUMBER; cnt++) {
     console.log("Fizz");
   } else if (cnt % 5 === 0) {
     console.log("Buzz");
-  } else console.log(String(cnt));
+  } else {
+    console.log(String(cnt));
+  }
 }
