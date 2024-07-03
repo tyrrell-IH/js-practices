@@ -17,21 +17,18 @@ const displayHeader = (year, month) => {
 };
 
 const displayBlankSpaces = () => {
-  const blankSpaces = [];
   for (let number = 1; number <= blankSpacesNumber; number++) {
-    blankSpaces.push("  ");
+    process.stdout.write("   ");
   }
-  process.stdout.write(blankSpaces.join(" "));
 };
 
 const displayDays = () => {
   for (let day = firstDay; day <= lastDay; day.setDate(day.getDate() + 1)) {
-    if (day.getDay() === 0) {
-      process.stdout.write(`${day.getDate()}`.padStart(2));
-    } else if (day.getDay() === 6) {
-      console.log(`${day.getDate()}`.padStart(3));
+    const formattedDay = String(day.getDate()).padStart(2);
+    if (day.getDay() === 6) {
+      console.log(`${formattedDay}`);
     } else {
-      process.stdout.write(`${day.getDate()}`.padStart(3));
+      process.stdout.write(`${formattedDay} `);
     }
   }
 };
