@@ -1,17 +1,23 @@
 #!/usr/bin/env node
 
-const firstDay = new Date(2024, 6, 1);
-const lastDay = new Date(2024, 7, 0);
+import minimist from "minimist";
+
+const today = new Date();
+const argv = minimist(process.argv.slice(2));
+const year = argv["y"] || today.getFullYear();
+const month = argv["m"] || today.getMonth();
+const firstDay = new Date(year, month - 1, 1);
+const lastDay = new Date(year, month, 0);
 const blankSpacesNumber = firstDay.getDay();
 
 const main = () => {
-  displayHeader(2024, 7);
+  displayHeader();
   displayBlankSpaces();
   displayDays();
   displayFooter();
 };
 
-const displayHeader = (year, month) => {
+const displayHeader = () => {
   const header = `      ${month}月 ${year}\n日 月 火 水 木 金 土`;
   console.log(header);
 };
