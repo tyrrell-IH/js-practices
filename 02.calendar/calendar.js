@@ -6,7 +6,7 @@ const main = () => {
   const today = new Date();
   const argv = minimist(process.argv.slice(2));
   const year = argv["y"] || today.getFullYear();
-  const month = argv["m"] || today.getMonth();
+  const month = argv["m"] || today.getMonth() + 1;
   const firstDay = new Date(year, month - 1, 1);
   const lastDay = new Date(year, month, 0);
   displayHeader(year, month);
