@@ -2,33 +2,32 @@
 
 import minimist from "minimist";
 
-const today = new Date();
-const argv = minimist(process.argv.slice(2));
-const year = argv["y"] || today.getFullYear();
-const month = argv["m"] || today.getMonth();
-const firstDay = new Date(year, month - 1, 1);
-const lastDay = new Date(year, month, 0);
-const blankSpacesNumber = firstDay.getDay();
-
 const main = () => {
-  displayHeader();
-  displayBlankSpaces();
-  displayDays();
+  const today = new Date();
+  const argv = minimist(process.argv.slice(2));
+  const year = argv["y"] || today.getFullYear();
+  const month = argv["m"] || today.getMonth();
+  const firstDay = new Date(year, month - 1, 1);
+  const lastDay = new Date(year, month, 0);
+  displayHeader(year, month);
+  displayBlankSpaces(firstDay);
+  displayDays(firstDay, lastDay);
   displayFooter();
 };
 
-const displayHeader = () => {
+const displayHeader = (year, month) => {
   const header = `      ${month}月 ${year}\n日 月 火 水 木 金 土`;
   console.log(header);
 };
 
-const displayBlankSpaces = () => {
+const displayBlankSpaces = (firstDay) => {
+  const blankSpacesNumber = firstDay.getDay();
   for (let number = 1; number <= blankSpacesNumber; number++) {
     process.stdout.write("   ");
   }
 };
 
-const displayDays = () => {
+const displayDays = (firstDay, lastDay) => {
   for (let day = firstDay; day <= lastDay; day.setDate(day.getDate() + 1)) {
     const formattedDay = String(day.getDate()).padStart(2);
     if (day.getDay() === 6) {
