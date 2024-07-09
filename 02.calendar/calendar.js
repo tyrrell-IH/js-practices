@@ -30,11 +30,8 @@ const displayBlankSpaces = (firstDay) => {
 const displayDays = (firstDay, lastDay) => {
   for (const day = firstDay; day <= lastDay; day.setDate(day.getDate() + 1)) {
     const formattedDay = String(day.getDate()).padStart(2);
-    if (day.getDay() === 6) {
-      console.log(`${formattedDay}`);
-    } else {
-      process.stdout.write(`${formattedDay} `);
-    }
+    const separator = day.getDay() === 6 ? "\n" : " ";
+    process.stdout.write(`${formattedDay}${separator}`);
   }
 };
 
