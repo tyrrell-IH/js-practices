@@ -12,7 +12,7 @@ const main = () => {
   displayHeader(year, month);
   displayBlankSpaces(firstDay);
   displayDays(firstDay, lastDay);
-  displayFooter();
+  console.log("\n");
 };
 
 const displayHeader = (year, month) => {
@@ -33,11 +33,6 @@ const displayDays = (firstDay, lastDay) => {
     const separator = day.getDay() === 6 ? "\n" : " ";
     process.stdout.write(`${formattedDay}${separator}`);
   }
-};
-
-const displayFooter = () => {
-  const footer = `\n`;
-  console.log(footer);
 };
 
 main();
