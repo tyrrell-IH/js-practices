@@ -21,8 +21,8 @@ const displayHeader = (year, month) => {
 };
 
 const displayBlankSpaces = (firstDate) => {
-  const blankSpacesNumber = firstDate.getDay();
-  for (let n = 1; n <= blankSpacesNumber; n++) {
+  const offset = firstDate.getDay();
+  for (let n = 1; n <= offset; n++) {
     process.stdout.write("   ");
   }
 };
