@@ -7,11 +7,11 @@ const main = () => {
   const argv = minimist(process.argv.slice(2));
   const year = argv["y"] || today.getFullYear();
   const month = argv["m"] || today.getMonth() + 1;
-  const firstDay = new Date(year, month - 1, 1);
-  const lastDay = new Date(year, month, 0);
+  const firstDate = new Date(year, month - 1, 1);
+  const lastDate = new Date(year, month, 0);
   displayHeader(year, month);
-  displayBlankSpaces(firstDay);
-  displayDays(firstDay, lastDay);
+  displayBlankSpaces(firstDate);
+  displayDays(firstDate, lastDate);
   console.log("\n");
 };
 
@@ -20,15 +20,15 @@ const displayHeader = (year, month) => {
   console.log(header);
 };
 
-const displayBlankSpaces = (firstDay) => {
-  const blankSpacesNumber = firstDay.getDay();
+const displayBlankSpaces = (firstDate) => {
+  const blankSpacesNumber = firstDate.getDay();
   for (let number = 1; number <= blankSpacesNumber; number++) {
     process.stdout.write("   ");
   }
 };
 
-const displayDays = (firstDay, lastDay) => {
-  for (const day = firstDay; day <= lastDay; day.setDate(day.getDate() + 1)) {
+const displayDays = (firstDate, lastDate) => {
+  for (const day = firstDate; day <= lastDate; day.setDate(day.getDate() + 1)) {
     const formattedDay = String(day.getDate()).padStart(2);
     const separator = day.getDay() === 6 ? "\n" : " ";
     process.stdout.write(`${formattedDay}${separator}`);
