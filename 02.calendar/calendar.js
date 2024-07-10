@@ -22,7 +22,7 @@ const displayHeader = (year, month) => {
 
 const displayBlankSpaces = (firstDate) => {
   const blankSpacesNumber = firstDate.getDay();
-  for (let number = 1; number <= blankSpacesNumber; number++) {
+  for (let n = 1; n <= blankSpacesNumber; n++) {
     process.stdout.write("   ");
   }
 };
