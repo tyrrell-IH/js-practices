@@ -2,21 +2,19 @@ import sqlite3 from "sqlite3";
 
 const db = new sqlite3.Database(":memory");
 
-const runPromise = (db, sqlStatement) => {
-  return new Promise((resolve) => {
+const runPromise = (db, sqlStatement) =>
+  new Promise((resolve) =>
     db.run(sqlStatement, function () {
       resolve(this);
-    });
-  });
-};
+    }),
+  );
 
-const getPromise = (db, sqlStatement) => {
-  return new Promise((resolve) => {
+const getPromise = (db, sqlStatement) =>
+  new Promise((resolve) =>
     db.get(sqlStatement, (err, row) => {
       resolve(row);
-    });
-  });
-};
+    }),
+  );
 
 runPromise(
   db,
@@ -27,7 +25,5 @@ runPromise(
     console.log(value.lastID);
     return getPromise(db, "SELECT * FROM books WHERE title = '蟹工船' ");
   })
-  .then((row) => {
-    console.log(`id: ${row.id} title: ${row.title}`);
-  })
+  .then((row) => console.log(`id: ${row.id} title: ${row.title}`))
   .then(() => runPromise(db, "DROP TABLE books"));
