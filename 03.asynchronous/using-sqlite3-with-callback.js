@@ -32,6 +32,7 @@ const withErrorCallback = () =>
           } else {
             console.log(`id: ${row.id} title: ${row.title}`);
           }
+          db.run("DROP TABLE books");
         });
       }),
   );
