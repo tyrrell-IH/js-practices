@@ -22,7 +22,7 @@ runPromise(
 )
   .then(() => runPromise(db, "INSERT INTO books(title) values ('蟹工船')"))
   .then((value) => {
-    console.log(value.lastID);
+    console.log(`id: ${value.lastID}`);
     return getPromise(db, "SELECT * FROM books WHERE title = '蟹工船' ");
   })
   .then((row) => console.log(`id: ${row.id} title: ${row.title}`))
