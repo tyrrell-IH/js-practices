@@ -1,29 +1,8 @@
 import sqlite3 from "sqlite3";
 import timers from "timers/promises";
+import { runPromise, getPromise } from "./promise-based-function.js";
 
 const db = new sqlite3.Database(":memory");
-
-const runPromise = (db, sqlStatement) =>
-  new Promise((resolve, reject) => {
-    db.run(sqlStatement, function (err) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(this);
-      }
-    });
-  });
-
-const getPromise = (db, sqlStatement) =>
-  new Promise((resolve, reject) =>
-    db.get(sqlStatement, (err, row) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(row);
-      }
-    }),
-  );
 
 runPromise(
   db,
