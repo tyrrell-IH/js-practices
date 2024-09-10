@@ -4,7 +4,7 @@ import { runPromise, getPromise } from "./promise-based-function.js";
 
 const db = new sqlite3.Database(":memory");
 
-const noeErrorAsyncAwait = async (db) => {
+const runWithoutError = async (db) => {
   await runPromise(
     db,
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
@@ -22,7 +22,7 @@ const noeErrorAsyncAwait = async (db) => {
   await runPromise(db, "DROP TABLE books");
 };
 
-const withErrorAsyncAwait = async (db) => {
+const runWithError = async (db) => {
   await runPromise(
     db,
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
@@ -40,6 +40,6 @@ const withErrorAsyncAwait = async (db) => {
   await runPromise(db, "DROP TABLE books");
 };
 
-noeErrorAsyncAwait(db);
+runWithoutError(db);
 await timers.setTimeout(100);
-withErrorAsyncAwait(db);
+runWithError(db);
