@@ -30,12 +30,16 @@ const executeWithError = async (db) => {
   try {
     await runWithPromise(db, "INSERT INTO books(title) values (null)");
   } catch (error) {
-    console.error(error.message);
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
   }
   try {
     await getWithPromise(db, "SELECT * FROM bookoff");
   } catch (error) {
-    console.error(error.message);
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
   }
   await runWithPromise(db, "DROP TABLE books");
 };
