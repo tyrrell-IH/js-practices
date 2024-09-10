@@ -26,9 +26,9 @@ const executeWithError = (db) => {
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
   )
     .then(() => runWithPromise(db, "INSERT INTO books(title) values (null)"))
-    .catch((error) => console.log(error.message))
+    .catch((error) => console.error(error.message))
     .then(() => getWithPromise(db, "SELECT * FROM bookoff "))
-    .catch((error) => console.log(error.message))
+    .catch((error) => console.error(error.message))
     .finally(() => runWithPromise(db, "DROP TABLE books"));
 };
 

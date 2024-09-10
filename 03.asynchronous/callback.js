@@ -21,9 +21,9 @@ const executeWithError = () =>
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
     () =>
       db.run("INSERT INTO books(title) values (null)", (error) => {
-        console.log(error.message);
+        console.error(error.message);
         db.get("SELECT * FROM bookoff ", (error) => {
-          console.log(error.message);
+          console.error(error.message);
           db.run("DROP TABLE books");
         });
       }),
