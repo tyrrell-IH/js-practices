@@ -10,8 +10,8 @@ const runWithoutError = (db) => {
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
   )
     .then(() => runPromise(db, "INSERT INTO books(title) values ('蟹工船')"))
-    .then((value) => {
-      console.log(`id: ${value.lastID}`);
+    .then((insertResult) => {
+      console.log(`id: ${insertResult.lastID}`);
       return getPromise(db, "SELECT * FROM books WHERE title = '蟹工船' ");
     })
     .then((row) => console.log(`id: ${row.id} title: ${row.title}`))
