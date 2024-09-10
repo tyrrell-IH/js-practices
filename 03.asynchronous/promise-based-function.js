@@ -1,4 +1,4 @@
-export const runPromise = (db, sqlQuery) =>
+export const runWithPromise = (db, sqlQuery) =>
   new Promise((resolve, reject) => {
     db.run(sqlQuery, function (error) {
       if (error) {
@@ -9,7 +9,7 @@ export const runPromise = (db, sqlQuery) =>
     });
   });
 
-export const getPromise = (db, sqlQuery) =>
+export const getWithPromise = (db, sqlQuery) =>
   new Promise((resolve, reject) =>
     db.get(sqlQuery, (error, row) => {
       if (error) {
