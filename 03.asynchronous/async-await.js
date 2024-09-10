@@ -1,6 +1,10 @@
 import sqlite3 from "sqlite3";
 import timers from "timers/promises";
-import { runWithPromise, getWithPromise } from "./promise-based-function.js";
+import {
+  runWithPromise,
+  getWithPromise,
+  closeWithPromise,
+} from "./promise-based-function.js";
 
 const db = new sqlite3.Database(":memory");
 
@@ -42,6 +46,7 @@ const executeWithError = async (db) => {
     }
   }
   await runWithPromise(db, "DROP TABLE books");
+  await closeWithPromise(db);
 };
 
 executeWithoutError(db);

@@ -24,7 +24,9 @@ const executeWithError = () =>
         console.error(error.message);
         db.get("SELECT * FROM bookoff ", (error) => {
           console.error(error.message);
-          db.run("DROP TABLE books");
+          db.run("DROP TABLE books", () => {
+            db.close();
+          });
         });
       }),
   );

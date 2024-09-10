@@ -1,6 +1,10 @@
 import sqlite3 from "sqlite3";
 import timers from "timers/promises";
-import { runWithPromise, getWithPromise } from "./promise-based-function.js";
+import {
+  runWithPromise,
+  getWithPromise,
+  closeWithPromise,
+} from "./promise-based-function.js";
 
 const db = new sqlite3.Database(":memory");
 
@@ -29,7 +33,8 @@ const executeWithError = (db) => {
     .catch((error) => console.error(error.message))
     .then(() => getWithPromise(db, "SELECT * FROM bookoff "))
     .catch((error) => console.error(error.message))
-    .finally(() => runWithPromise(db, "DROP TABLE books"));
+    .then(() => runWithPromise(db, "DROP TABLE books"))
+    .finally(() => closeWithPromise(db));
 };
 
 executeWithoutError(db);
