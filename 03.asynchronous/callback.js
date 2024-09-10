@@ -20,10 +20,10 @@ const withErrorCallback = () =>
   db.run(
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
     () =>
-      db.run("INSERT INTO books(title) values (null)", (err) => {
-        console.log(err.message);
-        db.get("SELECT * FROM bookoff ", (err) => {
-          console.log(err.message);
+      db.run("INSERT INTO books(title) values (null)", (error) => {
+        console.log(error.message);
+        db.get("SELECT * FROM bookoff ", (error) => {
+          console.log(error.message);
           db.run("DROP TABLE books");
         });
       }),

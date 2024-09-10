@@ -23,7 +23,7 @@ runPromise(
   "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
 )
   .then(() => runPromise(db, "INSERT INTO books(title) values (null)"))
-  .catch((err) => console.log(err.message))
+  .catch((error) => console.log(error.message))
   .then(() => getPromise(db, "SELECT * FROM bookoff "))
-  .catch((err) => console.log(err.message))
+  .catch((error) => console.log(error.message))
   .finally(() => runPromise(db, "DROP TABLE books"));

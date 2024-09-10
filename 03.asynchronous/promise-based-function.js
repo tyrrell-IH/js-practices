@@ -1,8 +1,8 @@
 export const runPromise = (db, sqlStatement) =>
   new Promise((resolve, reject) => {
-    db.run(sqlStatement, function (err) {
-      if (err) {
-        reject(err);
+    db.run(sqlStatement, function (error) {
+      if (error) {
+        reject(error);
       } else {
         resolve(this);
       }
@@ -11,9 +11,9 @@ export const runPromise = (db, sqlStatement) =>
 
 export const getPromise = (db, sqlStatement) =>
   new Promise((resolve, reject) =>
-    db.get(sqlStatement, (err, row) => {
-      if (err) {
-        reject(err);
+    db.get(sqlStatement, (error, row) => {
+      if (error) {
+        reject(error);
       } else {
         resolve(row);
       }
