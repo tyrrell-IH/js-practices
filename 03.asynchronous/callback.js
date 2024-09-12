@@ -1,7 +1,7 @@
 import sqlite3 from "sqlite3";
 import timers from "timers/promises";
 
-const db = new sqlite3.Database(":memory");
+const db = new sqlite3.Database(":memory:");
 
 const executeWithoutError = () =>
   db.run(

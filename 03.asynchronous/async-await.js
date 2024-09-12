@@ -6,7 +6,7 @@ import {
   closeWithPromise,
 } from "./promise-based-function.js";
 
-const db = new sqlite3.Database(":memory");
+const db = new sqlite3.Database(":memory:");
 
 const executeWithoutError = async (db) => {
   await runWithPromise(
