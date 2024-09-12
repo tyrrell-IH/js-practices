@@ -20,7 +20,9 @@ const executeWithoutError = (db) => {
       console.log(`id: ${insertResult.lastID}`);
       return getWithPromise(db, "SELECT * FROM books WHERE title = '蟹工船'");
     })
-    .then((row) => console.log(`id: ${row.id} title: ${row.title}`))
+    .then((row) => {
+      console.log(`id: ${row.id} title: ${row.title}`);
+    })
     .then(() => runWithPromise(db, "DROP TABLE books"));
 };
 
@@ -30,9 +32,13 @@ const executeWithError = (db) => {
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   )
     .then(() => runWithPromise(db, "INSERT INTO books(title) VALUES (NULL)"))
-    .catch((error) => console.error(error.message))
+    .catch((error) => {
+      console.error(error.message);
+    })
     .then(() => getWithPromise(db, "SELECT * FROM bookoff"))
-    .catch((error) => console.error(error.message))
+    .catch((error) => {
+      console.error(error.message);
+    })
     .then(() => runWithPromise(db, "DROP TABLE books"))
     .finally(() => closeWithPromise(db));
 };
