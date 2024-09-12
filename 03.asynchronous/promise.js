@@ -22,8 +22,8 @@ const executeWithoutError = (db) => {
     })
     .then((row) => {
       console.log(`id: ${row.id} title: ${row.title}`);
-    })
-    .then(() => runWithPromise(db, "DROP TABLE books"));
+      runWithPromise(db, "DROP TABLE books");
+    });
 };
 
 const executeWithError = (db) => {
