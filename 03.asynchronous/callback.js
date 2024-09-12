@@ -9,7 +9,7 @@ const executeWithoutError = () =>
     () =>
       db.run("INSERT INTO books(title) values ('蟹工船')", function () {
         console.log(`id: ${this.lastID}`);
-        db.get("SELECT * FROM books WHERE title = '蟹工船' ", (error, row) => {
+        db.get("SELECT * FROM books WHERE title = '蟹工船' ", (_error, row) => {
           console.log(`id: ${row.id} title: ${row.title}`);
           db.run("DROP TABLE books");
         });
