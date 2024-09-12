@@ -11,7 +11,7 @@ const db = new sqlite3.Database(":memory");
 const executeWithoutError = async (db) => {
   await runWithPromise(
     db,
-    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
+    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   );
   const insertResult = await runWithPromise(
     db,
@@ -20,7 +20,7 @@ const executeWithoutError = async (db) => {
   console.log(`id: ${insertResult.lastID}`);
   const selectedRow = await getWithPromise(
     db,
-    "SELECT * FROM books WHERE title = '蟹工船' ",
+    "SELECT * FROM books WHERE title = '蟹工船'",
   );
   console.log(`id: ${selectedRow.id} title: ${selectedRow.title}`);
   await runWithPromise(db, "DROP TABLE books");
@@ -29,7 +29,7 @@ const executeWithoutError = async (db) => {
 const executeWithError = async (db) => {
   await runWithPromise(
     db,
-    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
+    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   );
   try {
     await runWithPromise(db, "INSERT INTO books(title) values (null)");

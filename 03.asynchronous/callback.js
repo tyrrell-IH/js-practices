@@ -5,11 +5,11 @@ const db = new sqlite3.Database(":memory");
 
 const executeWithoutError = () =>
   db.run(
-    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
+    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
     () =>
       db.run("INSERT INTO books(title) values ('蟹工船')", function () {
         console.log(`id: ${this.lastID}`);
-        db.get("SELECT * FROM books WHERE title = '蟹工船' ", (_error, row) => {
+        db.get("SELECT * FROM books WHERE title = '蟹工船'", (_error, row) => {
           console.log(`id: ${row.id} title: ${row.title}`);
           db.run("DROP TABLE books");
         });
@@ -18,11 +18,11 @@ const executeWithoutError = () =>
 
 const executeWithError = () =>
   db.run(
-    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
+    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
     () =>
       db.run("INSERT INTO books(title) values (null)", (error) => {
         console.error(error.message);
-        db.get("SELECT * FROM bookoff ", (error) => {
+        db.get("SELECT * FROM bookoff", (error) => {
           console.error(error.message);
           db.run("DROP TABLE books", () => {
             db.close();

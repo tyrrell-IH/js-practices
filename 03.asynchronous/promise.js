@@ -11,14 +11,14 @@ const db = new sqlite3.Database(":memory");
 const executeWithoutError = (db) => {
   runWithPromise(
     db,
-    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
+    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   )
     .then(() =>
       runWithPromise(db, "INSERT INTO books(title) values ('蟹工船')"),
     )
     .then((insertResult) => {
       console.log(`id: ${insertResult.lastID}`);
-      return getWithPromise(db, "SELECT * FROM books WHERE title = '蟹工船' ");
+      return getWithPromise(db, "SELECT * FROM books WHERE title = '蟹工船'");
     })
     .then((row) => console.log(`id: ${row.id} title: ${row.title}`))
     .then(() => runWithPromise(db, "DROP TABLE books"));
@@ -27,11 +27,11 @@ const executeWithoutError = (db) => {
 const executeWithError = (db) => {
   runWithPromise(
     db,
-    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE )",
+    "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   )
     .then(() => runWithPromise(db, "INSERT INTO books(title) values (null)"))
     .catch((error) => console.error(error.message))
-    .then(() => getWithPromise(db, "SELECT * FROM bookoff "))
+    .then(() => getWithPromise(db, "SELECT * FROM bookoff"))
     .catch((error) => console.error(error.message))
     .then(() => runWithPromise(db, "DROP TABLE books"))
     .finally(() => closeWithPromise(db));
