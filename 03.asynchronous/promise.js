@@ -40,7 +40,7 @@ const executeWithError = (db) => {
       console.error(error.message);
     })
     .then(() => runWithPromise(db, "DROP TABLE books"))
-    .finally(() => closeWithPromise(db));
+    .then(() => closeWithPromise(db));
 };
 
 executeWithoutError(db);
