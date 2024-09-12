@@ -15,7 +15,7 @@ const executeWithoutError = async (db) => {
   );
   const insertResult = await runWithPromise(
     db,
-    "INSERT INTO books(title) values ('蟹工船')",
+    "INSERT INTO books(title) VALUES ('蟹工船')",
   );
   console.log(`id: ${insertResult.lastID}`);
   const selectedRow = await getWithPromise(
@@ -32,7 +32,7 @@ const executeWithError = async (db) => {
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   );
   try {
-    await runWithPromise(db, "INSERT INTO books(title) values (null)");
+    await runWithPromise(db, "INSERT INTO books(title) VALUES (NULL)");
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);

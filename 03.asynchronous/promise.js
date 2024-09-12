@@ -14,7 +14,7 @@ const executeWithoutError = (db) => {
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   )
     .then(() =>
-      runWithPromise(db, "INSERT INTO books(title) values ('蟹工船')"),
+      runWithPromise(db, "INSERT INTO books(title) VALUES ('蟹工船')"),
     )
     .then((insertResult) => {
       console.log(`id: ${insertResult.lastID}`);
@@ -29,7 +29,7 @@ const executeWithError = (db) => {
     db,
     "CREATE TABLE books(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL UNIQUE)",
   )
-    .then(() => runWithPromise(db, "INSERT INTO books(title) values (null)"))
+    .then(() => runWithPromise(db, "INSERT INTO books(title) VALUES (NULL)"))
     .catch((error) => console.error(error.message))
     .then(() => getWithPromise(db, "SELECT * FROM bookoff"))
     .catch((error) => console.error(error.message))
