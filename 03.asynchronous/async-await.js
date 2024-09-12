@@ -1,5 +1,4 @@
 import sqlite3 from "sqlite3";
-import timers from "timers/promises";
 import {
   runWithPromise,
   getWithPromise,
@@ -49,6 +48,5 @@ const executeWithError = async (db) => {
   await closeWithPromise(db);
 };
 
-executeWithoutError(db);
-await timers.setTimeout(100);
-executeWithError(db);
+await executeWithoutError(db);
+await executeWithError(db);
