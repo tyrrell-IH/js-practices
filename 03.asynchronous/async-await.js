@@ -33,7 +33,7 @@ const executeWithError = async (db) => {
   try {
     await runWithPromise(db, "INSERT INTO books(title) VALUES (NULL)");
   } catch (error) {
-    if (error.name === "Error" && error.code === "SQLITE_CONSTRAINT") {
+    if (error instanceof Error && error.code === "SQLITE_CONSTRAINT") {
       console.error(error.message);
     } else {
       throw error;
@@ -42,7 +42,7 @@ const executeWithError = async (db) => {
   try {
     await getWithPromise(db, "SELECT * FROM bookoff");
   } catch (error) {
-    if (error.name === "Error" && error.code === "SQLITE_ERROR") {
+    if (error instanceof Error && error.code === "SQLITE_ERROR") {
       console.error(error.message);
     } else {
       throw error;
