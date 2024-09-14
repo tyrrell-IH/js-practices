@@ -34,12 +34,12 @@ const executeWithError = (db) => {
     .then(() => runWithPromise(db, "INSERT INTO books(title) VALUES (NULL)"))
     .catch((error) => {
       console.error(error.message);
+      return getWithPromise(db, "SELECT * FROM bookoff");
     })
-    .then(() => getWithPromise(db, "SELECT * FROM bookoff"))
     .catch((error) => {
       console.error(error.message);
+      return runWithPromise(db, "DROP TABLE books");
     })
-    .then(() => runWithPromise(db, "DROP TABLE books"))
     .then(() => closeWithPromise(db));
 };
 
