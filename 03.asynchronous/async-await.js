@@ -17,11 +17,11 @@ const executeWithoutError = async (db) => {
     "INSERT INTO books(title) VALUES ('蟹工船')",
   );
   console.log(`id: ${insertResult.lastID}`);
-  const selectedRow = await getWithPromise(
+  const row = await getWithPromise(
     db,
     "SELECT * FROM books WHERE title = '蟹工船'",
   );
-  console.log(`id: ${selectedRow.id} title: ${selectedRow.title}`);
+  console.log(`id: ${row.id} title: ${row.title}`);
   await runWithPromise(db, "DROP TABLE books");
 };
 
