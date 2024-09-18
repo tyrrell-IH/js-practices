@@ -12,7 +12,6 @@ const insertMemo = () => {
 
   const lines = [];
   rl.on("line", (line) => {
-    // ここで入力を処理する
     lines.push(line);
   });
 
