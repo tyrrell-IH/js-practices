@@ -17,22 +17,14 @@ const insertMemo = () => {
 
   rl.on("close", async () => {
     const db = new sqlite3.Database("./memo.db");
-    try {
-      await runWithPromise(
-        db,
-        "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, body TEXT NOT NULL)",
-      );
-      await runWithPromise(db, "INSERT INTO memos(body) VALUES(?)", [
-        lines.join("\n"),
-      ]);
-      await closeWithPromise(db);
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      } else {
-        throw error;
-      }
-    }
+    await runWithPromise(
+      db,
+      "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, body TEXT NOT NULL)",
+    );
+    await runWithPromise(db, "INSERT INTO memos(body) VALUES(?)", [
+      lines.join("\n"),
+    ]);
+    await closeWithPromise(db);
   });
 };
 
