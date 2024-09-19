@@ -9,6 +9,17 @@ export const runWithPromise = (db, sqlQuery, params = []) =>
     });
   });
 
+export const allWithPromise = (db, sqlQuery) =>
+  new Promise((resolve, reject) =>
+    db.all(sqlQuery, function (error, row) {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(row);
+      }
+    }),
+  );
+
 export const closeWithPromise = (db) =>
   new Promise((resolve, reject) =>
     db.close((error) => {
