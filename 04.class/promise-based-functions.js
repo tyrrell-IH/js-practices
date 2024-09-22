@@ -1,4 +1,4 @@
-export const run = (db, sqlQuery, params = []) =>
+export const runWithPromise = (db, sqlQuery, params = []) =>
   new Promise((resolve, reject) => {
     db.run(sqlQuery, params, function (error) {
       if (error) {
@@ -9,18 +9,7 @@ export const run = (db, sqlQuery, params = []) =>
     });
   });
 
-export const get = (db, sqlQuery) =>
-  new Promise((resolve, reject) =>
-    db.get(sqlQuery, function (error, row) {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(row);
-      }
-    }),
-  );
-
-export const all = (db, sqlQuery) =>
+export const allWithPromise = (db, sqlQuery) =>
   new Promise((resolve, reject) =>
     db.all(sqlQuery, function (error, row) {
       if (error) {
@@ -31,7 +20,7 @@ export const all = (db, sqlQuery) =>
     }),
   );
 
-export const close = (db) =>
+export const closeWithPromise = (db) =>
   new Promise((resolve, reject) =>
     db.close((error) => {
       if (error) {
