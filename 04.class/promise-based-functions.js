@@ -9,9 +9,9 @@ export const run = (db, sqlQuery, params = []) =>
     });
   });
 
-export const get = (db, sqlQuery) =>
+export const get = (db, sqlQuery, params = []) =>
   new Promise((resolve, reject) =>
-    db.get(sqlQuery, function (error, row) {
+    db.get(sqlQuery, params, function (error, row) {
       if (error) {
         reject(error);
       } else {
