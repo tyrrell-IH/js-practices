@@ -6,13 +6,13 @@ export class DBOperation {
     this.db = new sqlite3.Database("./memo.db");
   }
 
-  async insert(text) {
+  async insert(lines) {
     await run(
       this.db,
       "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, body TEXT NOT NULL)",
     );
     return await run(this.db, "INSERT INTO memos(body) VALUES(?)", [
-      text.join("\n"),
+      lines.join("\n"),
     ]);
   }
 
