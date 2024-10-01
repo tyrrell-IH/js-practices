@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import minimist from "minimist";
 import readline from "readline";
 import { Memo } from "./memo.js";
