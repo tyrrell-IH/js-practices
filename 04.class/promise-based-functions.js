@@ -1,5 +1,5 @@
-export const run = (db, sqlQuery, params = []) =>
-  new Promise((resolve, reject) => {
+export const run = (db, sqlQuery, params = []) => {
+  return new Promise((resolve, reject) => {
     db.run(sqlQuery, params, function (error) {
       if (error) {
         reject(error);
@@ -8,9 +8,10 @@ export const run = (db, sqlQuery, params = []) =>
       }
     });
   });
+};
 
-export const get = (db, sqlQuery, params = []) =>
-  new Promise((resolve, reject) =>
+export const get = (db, sqlQuery, params = []) => {
+  return new Promise((resolve, reject) =>
     db.get(sqlQuery, params, function (error, row) {
       if (error) {
         reject(error);
@@ -19,9 +20,10 @@ export const get = (db, sqlQuery, params = []) =>
       }
     }),
   );
+};
 
-export const all = (db, sqlQuery) =>
-  new Promise((resolve, reject) =>
+export const all = (db, sqlQuery) => {
+  return new Promise((resolve, reject) =>
     db.all(sqlQuery, function (error, row) {
       if (error) {
         reject(error);
@@ -30,9 +32,10 @@ export const all = (db, sqlQuery) =>
       }
     }),
   );
+};
 
-export const close = (db) =>
-  new Promise((resolve, reject) =>
+export const close = (db) => {
+  return new Promise((resolve, reject) =>
     db.close((error) => {
       if (error) {
         reject(error);
@@ -41,3 +44,4 @@ export const close = (db) =>
       }
     }),
   );
+};
