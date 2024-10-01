@@ -2,7 +2,7 @@ import sqlite3 from "sqlite3";
 import { run, get, all, close } from "./promise-based-functions.js";
 
 export class MemoDB {
-  #db = new sqlite3.Database("./db/memo.db");
+  #db = new sqlite3.Database("./memo.db");
 
   #createTable() {
     return run(
