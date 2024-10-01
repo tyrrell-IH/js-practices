@@ -1,5 +1,5 @@
-import { MemoDB } from "./sample/memoDB.js";
-import { SelectableList } from "./sample/selectable-list.js";
+import { MemoDB } from "./memoDB.js";
+import { SelectableList } from "./selectable-list.js";
 
 export class Memo {
   #memoDB = new MemoDB();
