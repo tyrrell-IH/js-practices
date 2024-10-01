@@ -2,7 +2,7 @@
 
 import minimist from "minimist";
 import readline from "readline";
-import { Memo } from "./memo.js";
+import { Memo } from "../lib/memo.js";
 
 const input = () => {
   return new Promise((resolve) => {
