@@ -12,7 +12,7 @@ export class SelectableList {
     this.#instruction = instruction;
   }
 
-  async selecteMemo() {
+  async selectMemo() {
     const question = {
       type: "select",
       name: "id",
