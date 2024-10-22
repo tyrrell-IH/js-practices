@@ -2,7 +2,7 @@
 
 import minimist from "minimist";
 import readline from "readline";
-import { Memo } from "../lib/memo.js";
+import { MemoApp } from "../lib/memoApp.js";
 
 const input = () => {
   return new Promise((resolve) => {
@@ -26,17 +26,17 @@ const input = () => {
 
 const main = async () => {
   const argv = minimist(process.argv.slice(2));
-  const memo = new Memo();
+  const memoApp = new MemoApp();
 
   if (argv.r) {
-    await memo.showFull();
+    await memoApp.showFullMemo();
   } else if (argv.d) {
-    await memo.delete();
+    await memoApp.delete();
   } else if (argv.l) {
-    await memo.showTitles();
+    await memoApp.showTitles();
   } else {
     const lines = await input();
-    await memo.add(lines);
+    await memoApp.add(lines);
   }
 };
 

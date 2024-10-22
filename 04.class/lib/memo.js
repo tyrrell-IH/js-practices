@@ -4,53 +4,39 @@ import { SelectableList } from "./selectable-list.js";
 export class Memo {
   #memoDB = new MemoDB();
 
+  async hasMemo() {
+    const memos = await this.#memoDB.selectAll();
+    return memos.length !== 0;
+  }
+
   async add(lines) {
     await this.#memoDB.insert(lines);
-    return this.#memoDB.close();
+    return await this.#memoDB.close();
   }
 
-  async #hasAnyMemos() {
+  async titles() {
     const memos = await this.#memoDB.selectAll();
-    if (memos.length !== 0) {
-      return memos;
-    } else {
-      console.log("No memos yet. Add a memo first.");
-      return false;
-    }
+    const titles = memos.map((memo) => memo.body.split("\n")[0]).join("\n");
+    await this.#memoDB.close();
+    return titles;
   }
 
-  async showTitles() {
-    const memos = await this.#hasAnyMemos();
-    if (memos) {
-      memos.forEach((memo) => {
-        const title = memo.body.split("\n")[0];
-        console.log(title);
-      });
-    }
-    return this.#memoDB.close();
-  }
-
-  #selectFromList(memos, instruction) {
+  async #selectFromList(instruction) {
+    const memos = await this.#memoDB.selectAll();
     const list = new SelectableList(memos, instruction);
-    return list.selecteMemo();
+    return await list.selectMemo();
   }
 
-  async showFull() {
-    const memos = await this.#hasAnyMemos();
-    if (memos) {
-      const memoID = await this.#selectFromList(memos, "see");
-      const selectedMemo = await this.#memoDB.selectByID(memoID);
-      console.log(selectedMemo.body);
-    }
-    return this.#memoDB.close();
+  async full() {
+    const memoID = await this.#selectFromList("see");
+    const selectedMemo = await this.#memoDB.selectByID(memoID);
+    await this.#memoDB.close();
+    return selectedMemo.body;
   }
 
   async delete() {
-    const memos = await this.#hasAnyMemos();
-    if (memos) {
-      const memoID = await this.#selectFromList(memos, "delete");
-      await this.#memoDB.delete(memoID);
-    }
-    return this.#memoDB.close();
+    const memoID = await this.#selectFromList("delete");
+    await this.#memoDB.delete(memoID);
+    return await this.#memoDB.close();
   }
 }
