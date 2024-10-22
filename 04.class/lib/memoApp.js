@@ -17,18 +17,16 @@ export class MemoApp {
   }
 
   async showFullMemo() {
-    if (await this.#memoObj.hasMemo()) {
-      const fullMemo = await this.#memoObj.full();
-      console.log(fullMemo);
-    } else {
+    const fullMemo = await this.#memoObj.full();
+    if (fullMemo === null) {
       console.log("No memos yet. Add a memo first.");
+    } else {
+      console.log(fullMemo);
     }
   }
 
   async delete() {
-    if (await this.#memoObj.hasMemo()) {
-      await this.#memoObj.delete();
-    } else {
+    if ((await this.#memoObj.delete()) === null) {
       console.log("No memos yet. Add a memo first.");
     }
   }
