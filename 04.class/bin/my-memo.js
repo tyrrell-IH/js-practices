@@ -2,7 +2,7 @@
 
 import minimist from "minimist";
 import readline from "readline";
-import { MemoApp } from "../lib/memoApp.js";
+import { MemoApp } from "../lib/memo-app.js";
 
 const input = () => {
   return new Promise((resolve) => {

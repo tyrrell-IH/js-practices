@@ -1,4 +1,4 @@
-import { MemoDB } from "./memoDB.js";
+import { MemoDB } from "./memo-db.js";
 import { SelectableList } from "./selectable-list.js";
 
 export class Memo {
