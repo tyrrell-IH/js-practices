@@ -4,8 +4,8 @@ import { run, get, all, close } from "./promise-based-functions.js";
 export class MemoDB {
   #db = new sqlite3.Database("./memo.db");
 
-  #createTable() {
-    return run(
+  async #createTable() {
+    return await run(
       this.#db,
       "CREATE TABLE IF NOT EXISTS memos(id INTEGER PRIMARY KEY AUTOINCREMENT, body TEXT NOT NULL)",
     );
@@ -13,25 +13,25 @@ export class MemoDB {
 
   async insert(lines) {
     await this.#createTable();
-    return run(this.#db, "INSERT INTO memos(body) VALUES(?)", [
+    return await run(this.#db, "INSERT INTO memos(body) VALUES(?)", [
       lines.join("\n"),
     ]);
   }
 
   async selectAll() {
     await this.#createTable();
-    return all(this.#db, "SELECT * FROM memos");
+    return await all(this.#db, "SELECT * FROM memos");
   }
 
-  selectByID(id) {
-    return get(this.#db, "SELECT * FROM memos WHERE id = ?", [id]);
+  async selectByID(id) {
+    return await get(this.#db, "SELECT * FROM memos WHERE id = ?", [id]);
   }
 
-  delete(id) {
-    return run(this.#db, "DELETE FROM memos WHERE id = ?", [id]);
+  async delete(id) {
+    return await run(this.#db, "DELETE FROM memos WHERE id = ?", [id]);
   }
 
-  close() {
-    return close(this.#db);
+  async close() {
+    return await close(this.#db);
   }
 }
