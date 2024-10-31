@@ -36,7 +36,7 @@ const main = async () => {
     await memoApp.showTitles();
   } else {
     const lines = await input();
-    await memoApp.add(lines);
+    await memoApp.createMemo(lines);
   }
 };
 
