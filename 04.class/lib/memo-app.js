@@ -1,13 +1,15 @@
 import { Memo } from "./memo.js";
+import { MemoCLI } from "./memo-cli.js";
 import { MemoDB } from "./memo-db.js";
 
 export class MemoApp {
   #memoDb = new MemoDB();
+  #ui = new MemoCLI();
 
-  async createMemo(lines) {
+  async createMemo() {
+    const lines = await this.#ui.inputMemo();
     const memo = new Memo(lines);
     await memo.save(this.#memoDb);
-    await this.#memoDb.close();
   }
 
   async showTitles() {
