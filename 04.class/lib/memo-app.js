@@ -16,12 +16,20 @@ export class MemoApp {
 
   async listMemos() {
     const memos = await this.#memoRepository.loadAll();
+    if (memos.length === 0) {
+      console.log("No memos yet. Add a memo first.");
+      return;
+    }
     this.#ui.showAll(memos);
     await this.#memoRepository.close();
   }
 
   async showMemo() {
     const memos = await this.#memoRepository.loadAll();
+    if (memos.length === 0) {
+      console.log("No memos yet. Add a memo first.");
+      return;
+    }
     const memoId = await this.#ui.fetchId(memos, "see");
     const memo = await this.#memoRepository.load(memoId);
     this.#ui.showDetail(memo);
@@ -30,6 +38,10 @@ export class MemoApp {
 
   async deleteMemo() {
     const memos = await this.#memoRepository.loadAll();
+    if (memos.length === 0) {
+      console.log("No memos yet. Add a memo first.");
+      return;
+    }
     const memoId = await this.#ui.fetchId(memos, "delete");
     await this.#memoRepository.delete(memoId);
     await this.#memoRepository.close();
