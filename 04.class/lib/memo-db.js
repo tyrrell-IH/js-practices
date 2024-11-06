@@ -18,7 +18,7 @@ export class MemoDB {
     ]);
   }
 
-  async selectAll() {
+  async loadAll() {
     await this.#createTable();
     return await all(this.#db, "SELECT * FROM memos");
   }

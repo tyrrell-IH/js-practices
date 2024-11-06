@@ -23,4 +23,9 @@ export class MemoCLI {
       });
     });
   }
+
+  showAll(memos) {
+    const titles = memos.map((memo) => memo.body.split("\n")[0]).join("\n");
+    console.log(titles);
+  }
 }

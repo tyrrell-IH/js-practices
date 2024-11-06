@@ -12,7 +12,7 @@ const main = async () => {
   } else if (argv.d) {
     await memoApp.delete();
   } else if (argv.l) {
-    await memoApp.showTitles();
+    await memoApp.listMemos();
   } else {
     await memoApp.createMemo();
   }

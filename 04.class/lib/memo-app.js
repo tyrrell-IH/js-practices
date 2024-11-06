@@ -1,10 +1,12 @@
 import { Memo } from "./memo.js";
 import { MemoCLI } from "./memo-cli.js";
 import { MemoDB } from "./memo-db.js";
+import { MemoRepository } from "./memo-repository.js";
 
 export class MemoApp {
-  #memoDb = new MemoDB();
   #ui = new MemoCLI();
+  #memoDb = new MemoDB();
+  #memoRepository = new MemoRepository(this.#memoDb);
 
   async createMemo() {
     const memoParams = await this.#ui.inputMemo();
@@ -12,13 +14,9 @@ export class MemoApp {
     await memo.save(this.#memoDb);
   }
 
-  async showTitles() {
-    const titles = await this.#memoObj.titles();
-    if (titles.length !== 0) {
-      console.log(titles);
-    } else {
-      console.log("No memos yet. Add a memo first.");
-    }
+  async listMemos() {
+    const memos = await this.#memoRepository.loadAll();
+    this.#ui.showAll(memos);
   }
 
   async showFullMemo() {
