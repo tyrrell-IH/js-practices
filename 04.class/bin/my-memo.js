@@ -10,7 +10,7 @@ const main = async () => {
   if (argv.r) {
     await memoApp.showMemo();
   } else if (argv.d) {
-    await memoApp.delete();
+    await memoApp.deleteMemo();
   } else if (argv.l) {
     await memoApp.listMemos();
   } else {

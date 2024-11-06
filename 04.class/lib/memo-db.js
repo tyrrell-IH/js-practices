@@ -27,8 +27,8 @@ export class MemoDB {
     return await get(this.#db, "SELECT * FROM memos WHERE id = ?", [memoId]);
   }
 
-  async delete(id) {
-    return await run(this.#db, "DELETE FROM memos WHERE id = ?", [id]);
+  async delete(memoId) {
+    return await run(this.#db, "DELETE FROM memos WHERE id = ?", [memoId]);
   }
 
   async close() {

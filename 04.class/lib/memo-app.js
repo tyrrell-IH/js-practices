@@ -25,9 +25,9 @@ export class MemoApp {
     this.#ui.showDetail(memo);
   }
 
-  async delete() {
-    if ((await this.#memoObj.delete()) === null) {
-      console.log("No memos yet. Add a memo first.");
-    }
+  async deleteMemo() {
+    const memos = await this.#memoRepository.loadAll();
+    const memoId = await this.#ui.fetchId(memos, "delete");
+    await this.#memoRepository.delete(memoId);
   }
 }
