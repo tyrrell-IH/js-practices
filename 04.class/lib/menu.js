@@ -1,28 +1,28 @@
 import pkg from "enquirer";
 const { prompt } = pkg;
 
-export class SelectableList {
+export class Menu {
   #titles;
   #instruction;
   constructor(memos, instruction) {
     this.#titles = memos.map((memo) => ({
-      value: memo.id,
+      value: memo,
       name: memo.body.split(`\n`)[0],
     }));
     this.#instruction = instruction;
   }
 
-  async selectMemo() {
+  async fetchId() {
     const question = {
       type: "select",
-      name: "id",
+      name: "memo",
       message: `Select a memo you want to ${this.#instruction}:`,
       choices: this.#titles,
       result() {
         return this.focused.value;
       },
     };
-    const selectedMemo = await prompt(question);
-    return selectedMemo.id;
+    const fetchedValue = await prompt(question);
+    return fetchedValue.memo.id;
   }
 }
