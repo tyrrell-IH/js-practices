@@ -11,10 +11,10 @@ export class MemoDB {
     );
   }
 
-  async insert(lines) {
+  async insert(memoParam) {
     await this.#createTable();
     return await run(this.#db, "INSERT INTO memos(body) VALUES(?)", [
-      lines.join("\n"),
+      memoParam,
     ]);
   }
 

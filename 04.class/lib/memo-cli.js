@@ -18,7 +18,8 @@ export class MemoCLI {
         if (lines[0].length === 0) {
           lines[0] = "Non Title";
         }
-        resolve(lines);
+        const memoParams = lines.join("\n");
+        resolve(memoParams);
       });
     });
   }

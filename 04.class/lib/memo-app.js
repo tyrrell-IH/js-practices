@@ -7,8 +7,8 @@ export class MemoApp {
   #ui = new MemoCLI();
 
   async createMemo() {
-    const lines = await this.#ui.inputMemo();
-    const memo = new Memo(lines);
+    const memoParams = await this.#ui.inputMemo();
+    const memo = new Memo(memoParams);
     await memo.save(this.#memoDb);
   }
 

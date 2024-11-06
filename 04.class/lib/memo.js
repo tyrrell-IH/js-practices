@@ -1,11 +1,11 @@
 export class Memo {
-  #lines;
+  #memoParam;
 
-  constructor(lines) {
-    this.#lines = lines;
+  constructor(memoParam) {
+    this.#memoParam = memoParam;
   }
 
   async save(db) {
-    await db.insert(this.#lines);
+    await db.insert(this.#memoParam);
   }
 }
