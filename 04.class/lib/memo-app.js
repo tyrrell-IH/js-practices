@@ -5,13 +5,12 @@ import { MemoRepository } from "./memo-repository.js";
 
 export class MemoApp {
   #ui = new MemoCLI();
-  #memoDb = new MemoDB();
-  #memoRepository = new MemoRepository(this.#memoDb);
+  #memoRepository = new MemoRepository(new MemoDB());
 
   async createMemo() {
     const memoParams = await this.#ui.inputMemo();
     const memo = new Memo(memoParams);
-    await memo.save(this.#memoDb);
+    await memo.save(this.#memoRepository);
   }
 
   async listMemos() {

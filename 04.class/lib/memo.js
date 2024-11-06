@@ -5,7 +5,7 @@ export class Memo {
     this.#memoParam = memoParam;
   }
 
-  async save(db) {
-    await db.insert(this.#memoParam);
+  async save(memoRepository) {
+    await memoRepository.create(this.#memoParam);
   }
 }
