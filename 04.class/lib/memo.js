@@ -1,11 +1,11 @@
 export class Memo {
-  #memoParam;
+  #memoParams;
 
-  constructor(memoParam) {
-    this.#memoParam = memoParam;
+  constructor(memoParams) {
+    this.#memoParams = memoParams;
   }
 
   async save(memoRepository) {
-    await memoRepository.create(this.#memoParam);
+    await memoRepository.create(this.#memoParams);
   }
 }
