@@ -8,7 +8,7 @@ const main = async () => {
   const memoApp = new MemoApp();
 
   if (argv.r) {
-    await memoApp.showFullMemo();
+    await memoApp.showMemo();
   } else if (argv.d) {
     await memoApp.delete();
   } else if (argv.l) {

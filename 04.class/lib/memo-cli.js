@@ -1,4 +1,5 @@
 import readline from "readline";
+import { Menu } from "./menu.js";
 
 export class MemoCLI {
   constructor() {}
@@ -24,8 +25,17 @@ export class MemoCLI {
     });
   }
 
+  async fetchId(memos, instruction) {
+    const menu = new Menu(memos, instruction);
+    return await menu.fetchId();
+  }
+
   showAll(memos) {
     const titles = memos.map((memo) => memo.body.split("\n")[0]).join("\n");
     console.log(titles);
+  }
+
+  showDetail(memo) {
+    console.log(memo.body);
   }
 }

@@ -12,4 +12,8 @@ export class MemoRepository {
   async loadAll() {
     return await this.#db.loadAll();
   }
+
+  async load(memoId) {
+    return await this.#db.selectById(memoId);
+  }
 }

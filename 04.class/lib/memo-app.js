@@ -18,13 +18,11 @@ export class MemoApp {
     this.#ui.showAll(memos);
   }
 
-  async showFullMemo() {
-    const fullMemo = await this.#memoObj.full();
-    if (fullMemo === null) {
-      console.log("No memos yet. Add a memo first.");
-    } else {
-      console.log(fullMemo);
-    }
+  async showMemo() {
+    const memos = await this.#memoRepository.loadAll();
+    const memoId = await this.#ui.fetchId(memos, "see");
+    const memo = await this.#memoRepository.load(memoId);
+    this.#ui.showDetail(memo);
   }
 
   async delete() {
