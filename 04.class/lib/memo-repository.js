@@ -20,4 +20,8 @@ export class MemoRepository {
   async delete(memoId) {
     await this.#db.delete(memoId);
   }
+
+  async close() {
+    await this.#db.close();
+  }
 }
