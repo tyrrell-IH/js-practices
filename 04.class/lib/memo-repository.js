@@ -14,7 +14,7 @@ export class MemoRepository {
   }
 
   async load(memoId) {
-    return await this.#db.selectById(memoId);
+    return await this.#db.loadById(memoId);
   }
 
   async delete(memoId) {

@@ -23,7 +23,7 @@ export class MemoDB {
     return await all(this.#db, "SELECT * FROM memos");
   }
 
-  async selectById(memoId) {
+  async loadById(memoId) {
     return await get(this.#db, "SELECT * FROM memos WHERE id = ?", [memoId]);
   }
 
