@@ -2,8 +2,6 @@ import readline from "readline";
 import { Menu } from "./menu.js";
 
 export class MemoCLI {
-  constructor() {}
-
   inputMemo() {
     return new Promise((resolve) => {
       const rl = readline.createInterface({
