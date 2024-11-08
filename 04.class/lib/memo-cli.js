@@ -41,7 +41,7 @@ export class MemoCLI {
       },
     };
     const fetchedValue = await prompt(question);
-    return fetchedValue.memo.id;
+    return fetchedValue.memo;
   }
 
   showAll(memos) {

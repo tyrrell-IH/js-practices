@@ -13,10 +13,6 @@ export class MemoRepository {
     return await this.#db.loadAll();
   }
 
-  async load(memoId) {
-    return await this.#db.loadById(memoId);
-  }
-
   async delete(memoId) {
     await this.#db.delete(memoId);
   }
