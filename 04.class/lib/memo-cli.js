@@ -1,5 +1,7 @@
+import pkg from "enquirer";
 import readline from "readline";
-import { Menu } from "./menu.js";
+
+const { prompt } = pkg;
 
 export class MemoCLI {
   inputMemo() {
@@ -23,9 +25,23 @@ export class MemoCLI {
     });
   }
 
-  async fetchId(memos, instruction) {
-    const menu = new Menu(memos, instruction);
-    return await menu.fetchId();
+  async selectMemo(memos, instruction) {
+    const menu = memos.map((memo) => ({
+      value: memo,
+      name: memo.body.split(`\n`)[0],
+    }));
+
+    const question = {
+      type: "select",
+      name: "memo",
+      message: `Select a memo you want to ${instruction}:`,
+      choices: menu,
+      result() {
+        return this.focused.value;
+      },
+    };
+    const fetchedValue = await prompt(question);
+    return fetchedValue.memo.id;
   }
 
   showAll(memos) {

@@ -30,7 +30,7 @@ export class MemoApp {
       console.log("No memos yet. Add a memo first.");
       return;
     }
-    const memoId = await this.#ui.fetchId(memos, "see");
+    const memoId = await this.#ui.selectMemo(memos, "see");
     const memo = await this.#memoRepository.load(memoId);
     this.#ui.showDetail(memo);
     await this.#memoRepository.close();
@@ -42,7 +42,7 @@ export class MemoApp {
       console.log("No memos yet. Add a memo first.");
       return;
     }
-    const memoId = await this.#ui.fetchId(memos, "delete");
+    const memoId = await this.#ui.selectMemo(memos, "delete");
     await this.#memoRepository.delete(memoId);
     await this.#memoRepository.close();
   }
