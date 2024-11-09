@@ -5,11 +5,6 @@ export async function run(db, sqlQuery, params = []) {
   return await promiseRun(sqlQuery, params);
 }
 
-export async function get(db, sqlQuery, params = []) {
-  const promiseGet = util.promisify(db.get).bind(db);
-  return await promiseGet(sqlQuery, params);
-}
-
 export async function all(db, sqlQuery) {
   const promiseAll = util.promisify(db.all).bind(db);
   return await promiseAll(sqlQuery);

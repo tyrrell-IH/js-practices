@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-import { run, get, all, close } from "./promise-based-functions.js";
+import { run, all, close } from "./promise-based-functions.js";
 
 export class MemoDB {
   #db = new sqlite3.Database("./memo.db");
